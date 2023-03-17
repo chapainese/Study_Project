@@ -1,0 +1,158 @@
+#include <bits/stdc++.h>
+using namespace std;
+//原始思路：通过整除(%=0)1-5来判断是工作日还是周末
+//问题：周末也会被%=0 
+//int main()
+//{
+//	int a=0;
+//	int b=0;
+//	int n=0;
+//	int i=0;
+//	int count=0;
+//	int day=1;
+//	scanf("%d %d %d",&a,&b,&n);
+//	while(count<n)
+//	{	
+//		if(day<=5)
+//		{
+//			count+=a;
+//			day++;
+//		}
+//		else
+//		{
+//			int j=0;
+//		for(j=1;j<=5;j++)
+//		{
+//			if(day%j==0)
+//			{
+//				break;
+//			}
+//		 } 
+//		 if(day%j==0)
+//		 {
+//		 	count+=a;
+//		 	day++;
+//		 }
+//		 else
+//		 {
+//		 	count+=b;
+//		 	day++;
+//		 }
+//		 }
+//		
+//	}
+//	
+//		printf("%d",day);
+//	return 0;
+//}
+	
+
+//思路2：switch case循环 /if else 循环 
+//int main()
+//{	
+//	int a=0;
+//	int b=0;
+//	int n=0;
+//	int i=0;
+//	int count=0;
+//	int day=1;
+//	scanf("%d %d %d",&a,&b,&n);
+//	while(count<n)
+//	{
+//		switch(day)
+//		{
+//			case 1:count+=a;
+//			
+//			break;
+//			case 2:count+=a;
+//			
+//			break;
+//			case 3:count+=a;
+//			
+//			break;
+//			case 4:count+=a;
+//			
+//			break;
+//			case 5:count+=a;
+//			
+//			break;
+//			case 6:count+=b;
+//			break;
+//			case 7:count+=b;
+//			
+//			break;
+//			case 8:count+=a;
+//			break;	
+//			case 9:count+=a;
+//			break;	
+//			case 10:count+=a;
+//			break;		
+//			case 11:count+=a;
+//			break;
+//			case 12:count+=a;
+//			break;
+//			case 13:count+=b;
+//			break;
+//			case 14:count+=b;
+//			break;			
+//		}
+//		day++;
+//	}
+//	printf("%d",day-1);
+//	return 0;
+//}
+//int main()
+//{
+//	long long a=0;
+//	long long b=0;
+//	long long n=0;
+//	long i=0;
+//	long count=0;
+//	long day=0;
+//	scanf("%lld %lld %lld",&a,&b,&n);
+//	while(count<n)
+//	{
+//		for(i=0;i<5&&(count<n);i++)//直接使用循环要在循环内加count<n这一条件 
+//		{
+//			count+=a;
+//			day++;
+//		}
+//		for(i=5;i<7&&(count<n);i++)
+//		{
+//			count+=b;
+//			day++;
+//		}
+//	 } 
+//	 printf("%lld",day);
+//	return 0;
+//}
+//把之前的周都先提前算完，再用原方法求剩余题ret。 
+int main()
+{
+	long long a=0;
+	long long b=0;
+	long long n=0;
+	long i=0;
+	long count=0;
+	long day=0;
+	long ret=0;
+	scanf("%lld %lld %lld",&a,&b,&n);
+	day=(n/(5*a+2*b))*7;
+	ret=n%(5*a+2*b);
+	while(ret>0)//两种算法：1.还剩多少（反）或者2.现有多少（正） 
+	{
+		//
+		for(i=0;i<5&&(ret>0);i++)
+		{
+			ret-=a;
+			day++;
+		}
+		for(i=5;i<7&&(ret>0);i++)
+		{
+			ret-=b;
+			day++;
+		}
+	 } 
+	 printf("%lld",day);
+	return 0;
+}
